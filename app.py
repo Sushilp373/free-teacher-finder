@@ -1,6 +1,7 @@
 from flask import Flask
 import pandas as pd
 from datetime import datetime, time
+import os
 
 app = Flask(__name__)
 
@@ -36,7 +37,8 @@ def get_current_period():
 
 @app.route("/")
 def home():
-    df = pd.read_excel("timetable.xlsx")
+    file_path = os.path.join(os.getcwd(), "timetable.xlsx")
+    df = pd.read_excel(file_path)
 
     today = datetime.now().strftime("%A")
 
